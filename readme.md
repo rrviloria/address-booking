@@ -2,6 +2,10 @@
 # Address booking
 A project created using [FastAPI](https://fastapi.tiangolo.com/) for saving address coordinates
 
+## Setup environment variable
+* Create `.env` file in root directory
+* Follow [env file sample](https://github.com/rrviloria/address-booking/blob/master/env.sample)
+
 ## Running the app using Docker
 * Download [docker](https://www.docker.com/products/docker-desktop/)
 * Build docker container
