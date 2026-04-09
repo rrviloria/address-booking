@@ -48,13 +48,16 @@ Once the app is running you can access the swagger doc in
 http://localhost/docs and execute the APIs.
 
 * Create User account
-![create user](https://storage.filebin.net/filebin/1af87aa634d72d43fcd65ca870513aedb35dbf079b2a169de3125cac8fbf4649?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GK352fd2505074fc9dde7fd2cb%2F20260409%2Fhel1-dc4%2Fs3%2Faws4_request&X-Amz-Date=20260409T082032Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&response-cache-control=max-age%3D900&response-content-disposition=inline%3B%20filename%3D%22Screenshot%202026-04-09%20at%204.17.53%20PM.png%22&response-content-type=image%2Fpng&x-id=GetObject&X-Amz-Signature=886b8134200ca1e00f9cecb973d161103ca13b1ad7619d50f3b15b3d602cc373)
+<img width="1458" height="703" alt="Screenshot 2026-04-09 at 4 17 53 PM" src="https://github.com/user-attachments/assets/c76df26c-cade-4467-b74f-2390f1b950a9" />
+
 
 * Clink Authorize button
-![button](https://storage.filebin.net/filebin/4479d255b20eaf1972f39546e692ecedb09503532318a9c3b6f8f5b83fe91035?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GK352fd2505074fc9dde7fd2cb%2F20260409%2Fhel1-dc4%2Fs3%2Faws4_request&X-Amz-Date=20260409T082157Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&response-cache-control=max-age%3D900&response-content-disposition=inline%3B%20filename%3D%22Screenshot%202026-04-09%20at%204.21.15%20PM.png%22&response-content-type=image%2Fpng&x-id=GetObject&X-Amz-Signature=cfadd2b2706321b58cc400e466dfb3c3063daffb28335f0a63404559004386bb)
+<img width="564" height="204" alt="Screenshot 2026-04-09 at 4 21 15 PM" src="https://github.com/user-attachments/assets/4d5d6e12-a23b-4204-9b83-c0905e99052f" />
+
 
 * Authenticate using user account
-![auth](https://storage.filebin.net/filebin/6c57a11bd179d50f69baf6ef552eabe57bdac20a5d1be9e2777ca83132b96789?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GK352fd2505074fc9dde7fd2cb%2F20260409%2Fhel1-dc4%2Fs3%2Faws4_request&X-Amz-Date=20260409T082626Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&response-cache-control=max-age%3D900&response-content-disposition=inline%3B%20filename%3D%22Screenshot%202026-04-09%20at%204.22.46%20PM.png%22&response-content-type=image%2Fpng&x-id=GetObject&X-Amz-Signature=1ef6d0b95a1959b60c23678ae53d74b3042d3a5ad5e106da756330d084e45c50)
+<img width="727" height="662" alt="Screenshot 2026-04-09 at 4 21 29 PM" src="https://github.com/user-attachments/assets/0ab2c770-85d2-40b3-a5f6-c5e4b71d7075" />
+
 
 ## Coding Standard
 * Run ruff code formatting
