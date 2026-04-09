@@ -51,6 +51,7 @@ http://localhost/docs and execute the APIs.
 
 * Authenticate using user account
 ![auth](https://storage.filebin.net/filebin/6c57a11bd179d50f69baf6ef552eabe57bdac20a5d1be9e2777ca83132b96789?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=GK352fd2505074fc9dde7fd2cb%2F20260409%2Fhel1-dc4%2Fs3%2Faws4_request&X-Amz-Date=20260409T082626Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&response-cache-control=max-age%3D900&response-content-disposition=inline%3B%20filename%3D%22Screenshot%202026-04-09%20at%204.22.46%20PM.png%22&response-content-type=image%2Fpng&x-id=GetObject&X-Amz-Signature=1ef6d0b95a1959b60c23678ae53d74b3042d3a5ad5e106da756330d084e45c50)
+
 ## Coding Standard
 * Run ruff code formatting
 ```shell
@@ -59,4 +60,9 @@ ruff format
 * Run import sorting
 ```shell
 isort .
+```
+## Testing
+* Open terminal/shell and run pytest
+```shell
+pytest .
 ```
