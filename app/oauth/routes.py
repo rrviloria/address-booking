@@ -5,13 +5,18 @@ from .authenticate import authenticate_user, create_access_token, get_password_h
 from .models import User, Token
 from ..core.database import SessionDep
 from app import config
+from .service import UserService
 
 
 router = APIRouter()
 
 
 @router.post("/token")
-async def login(session: SessionDep, account: OAuth2PasswordRequestForm = Depends()) -> Token:
+async def login(session: SessionDep,
+                account: OAuth2PasswordRequestForm = Depends()) -> Token:
+    """API route for user account login that requires username/password
+    to receive access token
+    """
     user = authenticate_user(session, account.username, account.password)
     if not user:
         raise HTTPException(
@@ -28,8 +33,8 @@ async def login(session: SessionDep, account: OAuth2PasswordRequestForm = Depend
 
 @router.post("/users")
 async def create_user(user: User, session: SessionDep) -> User:
+    """API route for creating user account
+    """
+    # TODO: authenticate
     user.password = get_password_hash(user.password)
-    session.add(user)
-    session.commit()
-    session.refresh(user)
-    return user
+    return UserService().create(session, user)
