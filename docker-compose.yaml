@@ -1,0 +1,10 @@
+services:
+  api:
+    image: fast-api
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/code
+    env_file:
+      - .env
