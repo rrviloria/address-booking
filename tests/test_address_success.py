@@ -3,8 +3,7 @@ from app.booking.models import Address
 
 
 def test_create_address(client):
-    """Test success create address response
-    """
+    """Test success create address response"""
     response = client.post(
         "/address",
         json={"longitude": 123.5, "latitude": 456.6},
@@ -12,11 +11,11 @@ def test_create_address(client):
 
     assert response.status_code == 200
     assert response.json() == {
-        'id': 1,
-        'latitude': '456.600000',
-        'longitude': '123.500000',
-        'name': '',
-        'user_id': 1,
+        "id": 1,
+        "latitude": "456.600000",
+        "longitude": "123.500000",
+        "name": "",
+        "user_id": 1,
     }
 
 
@@ -29,7 +28,7 @@ def test_list_address(client, db_session, mock_user):
         add = Address(
             latitude=random.randrange(155, 390),
             longitude=random.randrange(155, 390),
-            user=mock_user
+            user=mock_user,
         )
         db_session.add(add)
         db_session.commit()
@@ -40,12 +39,11 @@ def test_list_address(client, db_session, mock_user):
 
 
 def test_get_address(client, db_session, mock_user):
-    """Test success response for get single address route
-    """
+    """Test success response for get single address route"""
     add = Address(
         latitude=random.randrange(155, 390),
         longitude=random.randrange(155, 390),
-        user=mock_user
+        user=mock_user,
     )
     db_session.add(add)
     db_session.commit()
@@ -58,12 +56,11 @@ def test_get_address(client, db_session, mock_user):
 
 
 def test_delete_address(client, db_session, mock_user):
-    """Test success delete route for address and check the response
-    """
+    """Test success delete route for address and check the response"""
     add = Address(
         latitude=random.randrange(155, 390),
         longitude=random.randrange(155, 390),
-        user=mock_user
+        user=mock_user,
     )
     db_session.add(add)
     db_session.commit()
@@ -82,16 +79,18 @@ def test_update_address(client, db_session, mock_user):
     add = Address(
         latitude=random.randrange(155, 390),
         longitude=random.randrange(155, 390),
-        user=mock_user
+        user=mock_user,
     )
     db_session.add(add)
     db_session.commit()
     db_session.refresh(add)
 
-    response = client.patch(f"/address/{add.id}",
-                            json={"longitude": 123.5, "latitude": 456.6},)
+    response = client.patch(
+        f"/address/{add.id}",
+        json={"longitude": 123.5, "latitude": 456.6},
+    )
     resp_data = response.json()
     assert response.status_code == 200
     # values should be updated properly
-    assert resp_data["longitude"] == '123.500000'
-    assert resp_data["latitude"] == '456.600000'
+    assert resp_data["longitude"] == "123.500000"
+    assert resp_data["latitude"] == "456.600000"

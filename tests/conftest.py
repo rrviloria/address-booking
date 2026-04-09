@@ -8,9 +8,7 @@ from app.oauth.authenticate import get_current_user, User
 
 
 test_db_url = "sqlite:///./test.db"
-engine = create_engine(
-    test_db_url, connect_args={"check_same_thread": False}
-)
+engine = create_engine(test_db_url, connect_args={"check_same_thread": False})
 TestingSessionLocal = Session(engine)
 
 
@@ -21,16 +19,12 @@ async def mock_session():
 
 @pytest.fixture
 def mock_user():
-    return User(
-        username="rayray",
-        password="turtleisgreen"
-    )
+    return User(username="rayray", password="turtleisgreen")
 
 
 @pytest.fixture(scope="function")
 def db_session():
-    """Fixture for test db
-    """
+    """Fixture for test db"""
     SQLModel.metadata.create_all(bind=engine)
     session = TestingSessionLocal
     try:
@@ -42,16 +36,17 @@ def db_session():
 
 @pytest.fixture(scope="function")
 def client(db_session, mock_user):
-    """Fixture for testclient
-    """
+    """Fixture for testclient"""
+
     def override_get_db():
         try:
             yield db_session
         finally:
             pass
+
     def override_get_current_user():
         return mock_user
-    
+
     app.dependency_overrides[get_session] = override_get_db
     app.dependency_overrides[get_current_user] = override_get_current_user
     yield TestClient(app)
@@ -60,8 +55,7 @@ def client(db_session, mock_user):
 
 @pytest.fixture(autouse=True)
 def setup_db():
-    """Autouse fixture for clearing data before running a test
-    """
+    """Autouse fixture for clearing data before running a test"""
     SQLModel.metadata.create_all(bind=engine)
     yield
     SQLModel.metadata.drop_all(bind=engine)

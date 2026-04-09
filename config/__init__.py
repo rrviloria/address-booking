@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 BASEDIR = "/".join(os.path.abspath(os.path.dirname(__file__)).split("/")[:-1])
-load_dotenv(os.path.join(BASEDIR, '.env'))
+load_dotenv(os.path.join(BASEDIR, ".env"))
 
 settings_file = os.getenv("SETTINGS_FILE", "local")
 
