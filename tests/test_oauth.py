@@ -1,5 +1,5 @@
-from app.oauth.models import User
 from app.oauth.authenticate import get_password_hash
+from app.oauth.models import User
 
 
 def test_authenticate(client, db_session):

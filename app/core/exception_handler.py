@@ -1,7 +1,8 @@
 from fastapi import Request, status
+from fastapi.responses import JSONResponse
 from pydantic_core._pydantic_core import ValidationError
 from sqlalchemy.exc import IntegrityError
-from fastapi.responses import JSONResponse
+
 from .loggger import logger
 
 

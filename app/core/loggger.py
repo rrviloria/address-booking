@@ -1,8 +1,8 @@
 import logging
 from typing import Callable
+
 from fastapi import Request, Response
 from fastapi.routing import APIRoute
-
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)

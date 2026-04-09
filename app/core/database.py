@@ -1,10 +1,9 @@
 from typing import Annotated
 
 from fastapi import Depends
-
 from sqlmodel import Session, SQLModel, create_engine
-from app import config
 
+from app import config
 
 connect_args = {"check_same_thread": False}
 engine = create_engine(config.SQLITE_URL, connect_args=connect_args)

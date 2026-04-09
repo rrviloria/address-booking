@@ -1,14 +1,14 @@
-from typing import List, Dict
-from fastapi import APIRouter, Depends, HTTPException
-from .models import Address, Location
-from ..core.database import SessionDep
-from ..oauth.authenticate import get_current_user
-from ..oauth.models import User
-from ..core.loggger import RouteLogger
-from .service import AddressService
+from typing import Dict, List
 
+from fastapi import APIRouter, Depends, HTTPException
 from geopy import distance
 
+from ..core.database import SessionDep
+from ..core.loggger import RouteLogger
+from ..oauth.authenticate import get_current_user
+from ..oauth.models import User
+from .models import Address, Location
+from .service import AddressService
 
 router = APIRouter(
     prefix="/address", route_class=RouteLogger, dependencies=[Depends(get_current_user)]

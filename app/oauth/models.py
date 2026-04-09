@@ -1,7 +1,7 @@
-from sqlmodel import SQLModel, Field, Relationship
-from pydantic import BaseModel
-
 from typing import TYPE_CHECKING
+
+from pydantic import BaseModel
+from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
     from app.booking.models import Address

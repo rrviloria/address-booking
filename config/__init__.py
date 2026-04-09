@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 BASEDIR = "/".join(os.path.abspath(os.path.dirname(__file__)).split("/")[:-1])

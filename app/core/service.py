@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from sqlmodel import select, SQLModel, Session
+
+from sqlmodel import Session, SQLModel, select
 
 
 class Properties(ABC):

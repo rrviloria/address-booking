@@ -1,5 +1,6 @@
-from sqlmodel import Field, SQLModel, Relationship
 from pydantic import BaseModel
+from sqlmodel import Field, Relationship, SQLModel
+
 from ..oauth.models import User
 
 
