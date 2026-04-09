@@ -7,8 +7,7 @@ from sqlalchemy.exc import IntegrityError
 
 from .booking import routes as booking_routes
 from .core.database import create_db_and_tables
-from .core.exception_handler import (custom_integrity_error,
-                                     custom_validation_error)
+from .core.exception_handler import custom_integrity_error, custom_validation_error
 from .oauth import routes as oauth_routes
 
 

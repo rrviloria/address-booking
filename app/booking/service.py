@@ -1,5 +1,4 @@
-from ..core.service import (CreateService, DeleteService, RetrieveService,
-                            UpdateService)
+from ..core.service import CreateService, DeleteService, RetrieveService, UpdateService
 from .models import Address
 
 

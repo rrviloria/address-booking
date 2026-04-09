@@ -13,8 +13,8 @@ def test_create_address(client):
     assert response.status_code == 200
     assert response.json() == {
         "id": 1,
-        "latitude": "456.600000",
-        "longitude": "123.500000",
+        "latitude": 456.6,
+        "longitude": 123.5,
         "name": "",
         "user_id": 1,
     }
@@ -93,5 +93,5 @@ def test_update_address(client, db_session, mock_user):
     resp_data = response.json()
     assert response.status_code == 200
     # values should be updated properly
-    assert resp_data["longitude"] == "123.500000"
-    assert resp_data["latitude"] == "456.600000"
+    assert resp_data["longitude"] == 123.5
+    assert resp_data["latitude"] == 456.6

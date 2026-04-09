@@ -35,5 +35,5 @@ def test_update_address_validation(client, db_session, mock_user):
 def test_get_address_not_found(client, db_session, mock_user):
     response = client.get("/address/30")
 
-    assert response.status_code == 422
-    assert "errors" in response.json()
+    assert response.status_code == 404
+    assert response.json() == {"detail": "Address not found"}
