@@ -19,6 +19,7 @@ router = APIRouter(
 async def list_address(
     session: SessionDep, user: User = Depends(get_current_user)
 ) -> List[Address]:
+    """API route for retrieving user's saved address"""
     return AddressService().get(session, {"user": user})
 
 
@@ -26,6 +27,7 @@ async def list_address(
 async def get_address(
     add_id: str, session: SessionDep, user: User = Depends(get_current_user)
 ) -> Address:
+    """API route for retrieving single address"""
     results = AddressService().get(session, {"user": user})
     if len(results) > 0:
         return results[0]
@@ -49,6 +51,7 @@ async def update_address(
     session: SessionDep,
     user: User = Depends(get_current_user),
 ) -> Address:
+    """API route for updating address"""
     filters = {"user": user, "id": add_id}
     return AddressService().update(session, filters, add)
 
@@ -57,6 +60,7 @@ async def update_address(
 async def delete_address(
     add_id: int, session: SessionDep, user: User = Depends(get_current_user)
 ) -> Dict:
+    """API route for deleting address"""
     filters = {"user": user, "id": add_id}
     AddressService().delete(session, filters)
     return {"ok": True}
