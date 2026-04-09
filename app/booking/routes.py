@@ -1,12 +1,14 @@
 from typing import List, Dict
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import select
-from .models import Address
+from .models import Address, Location
 from ..core.database import SessionDep
 from ..oauth.authenticate import get_current_user
 from ..oauth.models import User
 from ..core.loggger import RouteLogger
 from .service import AddressService
+
+from geopy import distance
 
 
 router = APIRouter(
@@ -58,3 +60,19 @@ async def delete_address(add_id: int, session: SessionDep,
     }
     AddressService().delete(session, filters)
     return {"ok": True}
+
+
+@router.post("/nearme")
+async def near_me(location: Location, session: SessionDep, user: User = Depends(get_current_user)) -> dict:
+    addresses = AddressService().get(session, {"user": user})
+    locations = {
+        item.name: (item.longitude, item.latitude)
+        for item in addresses
+    }
+    my_loc = (location.longitude, location.latitude)
+
+    closest_site = min(locations.keys(),
+                    key=lambda k: distance.distance(my_loc, locations[k]).km)
+    km_dist = distance.distance(my_loc, locations[closest_site]).km
+
+    return {closest_site: f"{km_dist} km"}
