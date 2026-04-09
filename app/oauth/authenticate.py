@@ -16,44 +16,38 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> str:
-    """Verify if password and hash matched
-    """
+    """Verify if password and hash matched"""
     return password_hash.verify(plain_password, hashed_password)
 
 
 def get_password_hash(password: str) -> str:
-    """Hash a string password
-    """
+    """Hash a string password"""
     return password_hash.hash(password)
 
 
 def get_user(session: SessionDep, username: str) -> User | None:
-    """Get user by username in database
-    """
+    """Get user by username in database"""
     query = select(User).where(User.username == username)
     user: User | None = session.exec(query).first()
     return user
 
 
 def authenticate_user(session: SessionDep, username: str, password: str) -> bool | User:
-    """Verify if the user password matched within the database
-    """
-    try:
-        user: User | None = get_user(session, username)
-        if not verify_password(password, user.password):
-            return False
-        return user
-    except:
+    """Verify if the user password matched within the database"""
+    user: User | None = get_user(session, username)
+    if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    if not verify_password(password, user.password):
+        return False
+    return user
 
 
 def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
-    """Encode jwt token with given expiration time
-    """
+    """Encode jwt token with given expiration time"""
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
@@ -62,13 +56,13 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     to_encode.update({"exp": expire})
 
     encoded_jwt = jwt.encode(
-        to_encode, config.JWT_SECRET_KEY, algorithm=config.JWT_ALGORITHM)
+        to_encode, config.JWT_SECRET_KEY, algorithm=config.JWT_ALGORITHM
+    )
     return encoded_jwt
 
 
 async def get_current_user(
-    db: Session = Depends(get_session), 
-    token: str = Depends(oauth2_scheme)
+    db: Session = Depends(get_session), token: str = Depends(oauth2_scheme)
 ) -> User:
     """Decode and check access token to get the current user
 
@@ -81,7 +75,9 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"},
     )
     try:
-        payload = jwt.decode(token, config.JWT_SECRET_KEY, algorithms=[config.JWT_ALGORITHM])
+        payload = jwt.decode(
+            token, config.JWT_SECRET_KEY, algorithms=[config.JWT_ALGORITHM]
+        )
         username = payload.get("sub")
         if username is None:
             raise credentials_exception

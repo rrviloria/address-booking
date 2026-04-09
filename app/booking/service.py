@@ -7,8 +7,7 @@ from ..core.service import (
 from .models import Address
 
 
-class AddressService(CreateService, RetrieveService,
-                     UpdateService, DeleteService):
-    """Address service with CRUD functionalities
-    """
+class AddressService(CreateService, RetrieveService, UpdateService, DeleteService):
+    """Address service with CRUD functionalities"""
+
     model = Address

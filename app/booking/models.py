@@ -1,4 +1,3 @@
-from decimal import Decimal
 from sqlmodel import Field, SQLModel, Relationship
 from pydantic import BaseModel
 from ..oauth.models import User

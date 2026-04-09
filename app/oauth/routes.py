@@ -12,8 +12,9 @@ router = APIRouter()
 
 
 @router.post("/token")
-async def login(session: SessionDep,
-                account: OAuth2PasswordRequestForm = Depends()) -> Token:
+async def login(
+    session: SessionDep, account: OAuth2PasswordRequestForm = Depends()
+) -> Token:
     """API route for user account login that requires username/password
     to receive access token
     """
@@ -33,8 +34,7 @@ async def login(session: SessionDep,
 
 @router.post("/users")
 async def create_user(user: User, session: SessionDep) -> User:
-    """API route for creating user account
-    """
+    """API route for creating user account"""
     # TODO: authenticate
     user.password = get_password_hash(user.password)
     return UserService().create(session, user)

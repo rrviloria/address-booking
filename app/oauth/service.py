@@ -3,6 +3,6 @@ from .models import User
 
 
 class UserService(CreateService):
-    """User service with only create functionality
-    """
+    """User service with only create functionality"""
+
     model = User
