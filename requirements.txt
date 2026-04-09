@@ -1,0 +1,10 @@
+fastapi[standard]==0.113.0
+pydantic==2.12.5
+sqlmodel==0.0.38
+pyjwt==2.12.1
+pwdlib[argon2]==0.3.0
+python-dotenv==1.2.2
+geopy==2.4.1
+ruff==0.15.9
+isort==8.0.1
+pytest==9.0.3
