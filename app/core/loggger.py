@@ -9,6 +9,9 @@ logger = logging.getLogger(__name__)
 
 
 class RouteLogger(APIRoute):
+    """Custom Route which logs POST/PATCH request data and response
+    for debugging purposes
+    """
     def get_route_handler(self, *args, **kwargs) -> Callable:
         original_route_handler = super().get_route_handler(*args, **kwargs)
 

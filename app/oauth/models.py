@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 class User(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    username: str
     password: str
+    username: str = Field(unique=True, index=True)
     address: list["Address"] = Relationship(back_populates="user")
 
 
