@@ -65,7 +65,7 @@ class CreateService(BaseCreate):
         return data
 
 
-class UpdateService(BaseCreate):
+class UpdateService(BaseUpdate):
     """Base update service"""
 
     model: SQLModel = SQLModel
@@ -83,7 +83,7 @@ class UpdateService(BaseCreate):
         return db_data
 
 
-class DeleteService(BaseCreate):
+class DeleteService(BaseDelete):
     """Base delete service"""
 
     model: SQLModel = SQLModel
