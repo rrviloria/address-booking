@@ -3,6 +3,7 @@ import os
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY")
 
 SQLITE_DB_NAME = os.getenv("SQLITE_DB_NAME")
+SQLITE_TESTDB_NAME = os.getenv("SQLITE_DB_NAME")
 SQLITE_URL = f"sqlite:///{SQLITE_DB_NAME}"
 
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")

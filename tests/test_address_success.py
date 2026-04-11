@@ -20,40 +20,23 @@ def test_create_address(client):
     }
 
 
-def test_list_address(client, db_session, mock_user):
+def test_list_address(client, mock_address):
     """Test success get list address and response length
     should be the same as mocked data
     """
-    n = 10
-    for i in range(n):
-        add = Address(
-            latitude=random.randrange(155, 390),
-            longitude=random.randrange(155, 390),
-            user=mock_user,
-        )
-        db_session.add(add)
-        db_session.commit()
+
     response = client.get("/address")
 
     assert response.status_code == 200
-    assert len(response.json()) == n
+    assert len(response.json()) == len(mock_address)
 
 
-def test_get_address(client, db_session, mock_user):
+def test_get_address(client, mock_address):
     """Test success response for get single address route"""
-    add = Address(
-        latitude=random.randrange(155, 390),
-        longitude=random.randrange(155, 390),
-        user=mock_user,
-    )
-    db_session.add(add)
-    db_session.commit()
-    db_session.refresh(add)
-
-    response = client.get(f"/address/{add.id}")
+    response = client.get(f"/address/{mock_address[5].id}")
 
     assert response.status_code == 200
-    assert response.json()["id"] == add.id
+    assert response.json()["id"] == mock_address[5].id
 
 
 def test_delete_address(client, db_session, mock_user):

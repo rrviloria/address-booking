@@ -1,13 +1,17 @@
+import random
+
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import Session, SQLModel, create_engine
 
+from app import config
+from app.booking.models import Address
 from app.core.database import get_session
 from app.main import app
 from app.oauth.authenticate import User, get_current_user
 
-test_db_url = "sqlite:///./test.db"
-engine = create_engine(test_db_url, connect_args={"check_same_thread": False})
+TEST_DB_URL = f"sqlite:///./{config.SQLITE_TESTDB_NAME}"
+engine = create_engine(TEST_DB_URL, connect_args={"check_same_thread": False})
 TestingSessionLocal = Session(engine)
 
 
@@ -58,3 +62,20 @@ def setup_db():
     SQLModel.metadata.create_all(bind=engine)
     yield
     SQLModel.metadata.drop_all(bind=engine)
+
+
+@pytest.fixture
+def mock_address(db_session, mock_user):
+    """Mock address creation"""
+    n = 10
+    address = []
+    for _ in range(n):
+        add = Address(
+            latitude=random.randrange(155, 390),
+            longitude=random.randrange(155, 390),
+            user=mock_user,
+        )
+        db_session.add(add)
+        db_session.commit()
+        address.append(add)
+    return address
