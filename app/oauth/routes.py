@@ -6,7 +6,8 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app import config
 
 from ..core.database import SessionDep
-from .authenticate import authenticate_user, create_access_token, get_password_hash
+from .authenticate import (authenticate_user, create_access_token,
+                           get_password_hash)
 from .models import Token, User
 from .service import UserService
 

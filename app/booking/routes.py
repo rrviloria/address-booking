@@ -28,7 +28,7 @@ async def get_address(
     add_id: str, session: SessionDep, user: User = Depends(get_current_user)
 ) -> Address:
     """API route for retrieving single address"""
-    results = AddressService().get(session, {"user": user})
+    results = AddressService().get(session, {"id": add_id, "user": user})
     if len(results) > 0:
         return results[0]
     else:
